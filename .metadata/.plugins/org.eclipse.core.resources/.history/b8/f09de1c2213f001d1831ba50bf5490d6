@@ -1,0 +1,10 @@
+package com.rohan.beans;
+
+public class Admin {
+	
+	private String username;
+	private String password;
+	
+	
+	
+}

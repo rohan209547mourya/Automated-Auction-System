@@ -1,0 +1,25 @@
+package com.rohan.utility;
+
+import java.sql.Connection;
+
+public class GetConnection {
+	
+	public static Connection get() {
+		
+		
+		Connection conn = null;
+		
+		try {
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		return conn;
+	}
+	
+}

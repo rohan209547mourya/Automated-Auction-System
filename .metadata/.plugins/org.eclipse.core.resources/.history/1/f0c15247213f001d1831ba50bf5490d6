@@ -1,0 +1,7 @@
+package com.rohan.usecase;
+
+import com.rohan.dao.AdminDao;
+
+public class Admin implements AdminDao{
+
+}

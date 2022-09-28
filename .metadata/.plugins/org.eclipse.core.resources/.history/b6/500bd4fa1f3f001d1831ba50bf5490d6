@@ -1,0 +1,34 @@
+package com.rohan.utility;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
+public class GetConnection {
+	
+	public static Connection get() {
+		
+		
+		Connection conn = null;
+		
+		try {
+			
+			Class.forName("com.mysql.cd.jdbc.Driver");
+		}
+		catch(ClassNotFoundException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return conn;
+	}
+	
+}

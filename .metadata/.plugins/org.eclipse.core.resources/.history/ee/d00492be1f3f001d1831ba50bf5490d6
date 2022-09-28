@@ -1,0 +1,31 @@
+package com.rohan.utility;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
+public class GetConnection {
+	
+	public static Connection get() {
+		
+		
+		Connection conn = null;
+		
+		try {
+			
+			
+		}
+		catch(SQLException e) {
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		return conn;
+	}
+	
+}
