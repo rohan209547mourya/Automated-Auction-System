@@ -29,3 +29,9 @@ our application provides you a platfrom to invest your money on good product.
 > Registration and Login,
 > Can bid on products,
 > Payment to store
+
+
+# Used Technology 
+1. ![Core Java ](<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>)
+2. MySQL
+3. Java Database Connection
