@@ -1,7 +1,0 @@
-package com.rohan.dao;
-
-public interface AdminDao {
-	
-	public void adminLogIn(Admin admin);
-	
-}
