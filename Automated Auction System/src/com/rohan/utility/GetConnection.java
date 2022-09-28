@@ -14,7 +14,7 @@ public class GetConnection {
 		
 		try {
 			
-			Class.forName("com.mysql.cd.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		}
 		catch(ClassNotFoundException e) {
 			
@@ -23,7 +23,7 @@ public class GetConnection {
 		
 		
 		
-		String url = "jdbc://mysql://localhost:3306/auction_main";
+		String url = "jdbc:mysql://localhost:3306/auction_main";
 		
 		try {
 			

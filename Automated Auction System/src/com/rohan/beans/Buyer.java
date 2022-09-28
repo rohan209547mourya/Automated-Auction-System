@@ -1,36 +1,25 @@
 package com.rohan.beans;
 
-public class Admin {
+public class Buyer {
 	
 	private int id;
-	private boolean login;
 	private String name;
 	private String username;
 	private String password;
 	
 	
-	public Admin() {
+	public Buyer() {
 		
 		
 	}
-	
-	
-	public Admin(boolean log, int id, String name, String username, String password) {
+
+
+	public Buyer(int id, String name, String username, String password) {
 		super();
-		this.login = log;
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.password = password;
-	}
-
-	public boolean isLogin() {
-		return login;
-	}
-
-
-	public void setLogin(boolean login) {
-		this.login = login;
 	}
 
 
@@ -76,11 +65,8 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
+		return "Buyer [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
 	}
-	
-	
-	
 	
 	
 	
