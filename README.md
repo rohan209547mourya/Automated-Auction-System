@@ -32,6 +32,6 @@ our application provides you a platfrom to invest your money on good product.
 
 
 # Used Technology 
-1. Core Java 
-2. MySQL
-3. Java Database Connectivity.
+- Core Java 
+- MySQL
+- Java Database Connectivity.
