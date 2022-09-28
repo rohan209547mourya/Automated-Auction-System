@@ -1,0 +1,61 @@
+mysql> create table ADMIN
+    -> (
+    -> Admin_id int primary key auto_increment,
+    -> Admin_name varchar(20),
+    -> Admin_username varchar(8),
+    -> Admin_password varchar(6)
+    -> );
+
+
+
+mysql> insert into ADMIN (Admin_name , Admin_username , Admin_password) values('Rohan Mourya' , 'admin' , 'rootrm');
+
+
+
+mysql> create table seller
+     (
+     seller_id int primary key auto_increment,
+     seller_name varchar(20) NOT NULL,
+     seller_username varchar(30) NOT NULL UNIQUE,
+     seller_password varchar(8) NOT NULL,
+     );
+
+
+
+mysql> create table buyers
+    -> (
+    -> buyer_id int primary key auto_increment,
+    -> buyer_name varchar(20) NOT NULL,
+    -> buyer_username varchar(30) NOT NULL UNIQUE,
+    -> buyer_password varchar(8) NOT NULL
+    -> );
+
+
+
+mysql>  create table products
+    ->           (
+    ->           product_id int primary key auto_increment,
+    ->           product_name varchar(40) NOT NULL,
+    ->           base_price int NOT NULL,
+    ->           status varchar(1) NOT NULL
+    ->           );
+
+
+ create table products_seller
+    -> (
+    -> seller_id int,
+    -> product_id int,
+    -> foreign key (seller_id) references seller(seller_id),
+    -> foreign key (product_id) references products(product_id)
+    -> );
+
+
+
+mysql>  create table bid
+    ->      (
+    ->      product_id int,
+    ->      buyer_id int,
+    ->      foreign key (product_id) references products(product_id),
+    ->      foreign key (buyer_id) references buyers(buyer_id),
+    ->      bid_amount int
+    ->      );
