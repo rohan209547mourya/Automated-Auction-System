@@ -9,23 +9,23 @@ our application provides you a platfrom to invest your money on good product.
 # Features 
 
 1. Admin
-> Can add new product
-> Can delete product
-> Manage sellers and buyers
+> Can add new product,
+> Can delete product,
+> Manage sellers and buyers,
 > Payment to seller after bid completed 
 
 2. Store
-> Getting commission 
-> Organizing auctions
-> allowing customers to register
+> Getting commission,
+> Organizing auctions,
+> allowing customers to register,
 > Manage bids of buyers 
 
 3. Seller
-> Registration and Login
-> Provide product to store
+> Registration and Login,
+> Provide product to store,
 > Setting base price
 
 4. Buyers
-> Registration and Login
-> Can bid on products
+> Registration and Login,
+> Can bid on products,
 > Payment to store
