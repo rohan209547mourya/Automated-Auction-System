@@ -118,14 +118,102 @@ public class Administrator implements AdminDao{
 
 	@Override
 	public List<Buyer> viewRegisteredBuyers() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(this.admin == null) {
+			
+			System.out.println("To access this functionality you need to login first!");
+			
+			return null;
+		}
+		
+		
+		List<Buyer> users = new ArrayList<>();
+		
+		try(Connection conn = GetConnection.get()) {
+			
+			PreparedStatement state = conn.prepareStatement("select * from buyers");	
+			
+			ResultSet res = state.executeQuery();
+			
+			
+			
+			while(res.next()) {
+				
+				
+				int id = res.getInt("buyer_id");
+				String n = res.getString("buyer_name");
+				String s = res.getString("buyer_username");
+				String p = res.getString("buyer_password");
+				
+				users.add(new Buyer(id, n, s, p));				
+			}
+			
+			
+			if(users.size() == 0) {
+				
+				System.out.println("There is no registerd buyer!");
+			}
+			
+		}
+		catch(SQLException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		return users;
 	}
 
 	@Override
 	public List<Seller> viewRegisterdSellers() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(this.admin == null) {
+			
+			System.out.println("To access this functionality you need to login first!");
+			
+			return null;
+		}
+		
+		
+		List<Seller> users = new ArrayList<>();
+		
+		try(Connection conn = GetConnection.get()) {
+			
+			PreparedStatement state = conn.prepareStatement("select * from seller");	
+			
+			ResultSet res = state.executeQuery();
+			
+			
+			
+			while(res.next()) {
+				
+				
+				int id = res.getInt("seller_id");
+				String n = res.getString("seller_name");
+				String s = res.getString("seller_username");
+				String p = res.getString("seller_password");
+				
+				users.add(new Seller(id, n, s, p));				
+			}
+			
+			
+			if(users.size() == 0) {
+				
+				System.out.println("There is no registerd buyer!");
+			}
+			
+		}
+		catch(SQLException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		return users;
 	}
 
 	public Admin getAdmin() {
