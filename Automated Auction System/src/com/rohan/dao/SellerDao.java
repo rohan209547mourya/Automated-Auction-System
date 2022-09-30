@@ -21,6 +21,6 @@ public interface SellerDao {
 	
 	public void addProduct(Product item);
 	
-	public void updateProduct(int product_id);
+	public void updateProduct(int product_id , int k);
 }
 
