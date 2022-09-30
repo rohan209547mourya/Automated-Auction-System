@@ -8,6 +8,8 @@ public class Product {
 	private String name;
 	private String status;
 	private String category;
+	private int quantity;
+	
 	
 	public Product(int id, int price, String name, String status, String category) {
 		super();
@@ -22,6 +24,15 @@ public class Product {
 		
 		
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	
 	
 	public String getCategory() {

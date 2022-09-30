@@ -16,5 +16,5 @@ public interface BuyerDao {
 	
 	public void buyProduct(int product_id);
 	
-	public List<String> viewAllBuyers();
+	public List<Buyer> viewAllBuyers();
 }
