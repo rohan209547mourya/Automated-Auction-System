@@ -320,8 +320,36 @@ public class UserBuyer implements BuyerDao{
 		List<Buyer> buyers = new ArrayList<>();
 		
 		
-		
-		
+		try(Connection conn = GetConnection.get()) {
+			
+			PreparedStatement state = conn.prepareStatement("select * from buyers");
+			
+			ResultSet res = state.executeQuery();
+			
+			boolean flag = false;
+			
+			while(res.next()) {
+				
+				flag = true;
+				
+				buyers.add(new Buyer(res.getInt("buyer_id"), res.getString("buyer_name"), res.getString("buyer_username"), res.getString("buyer_password")));
+				
+			}
+			
+			if(!flag) {
+				
+				throw new BuyerException("There is not buyer registerd!");
+			}
+			
+		} 
+		catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+		} 
+		catch (BuyerException e) {
+			
+			System.out.println(e.getMessage());
+		}
 		
 		return buyers;
 	}

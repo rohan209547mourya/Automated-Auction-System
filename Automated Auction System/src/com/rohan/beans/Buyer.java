@@ -65,7 +65,7 @@ public class Buyer {
 
 	@Override
 	public String toString() {
-		return "Buyer [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
+		return "Buyer [id=" + id + ", name=" + name + ", username=" + username + "]";
 	}
 	
 	

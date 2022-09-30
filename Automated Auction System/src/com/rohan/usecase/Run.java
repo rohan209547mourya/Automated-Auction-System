@@ -7,11 +7,7 @@ public class Run {
 		
 		UserBuyer b1 = new UserBuyer();
 		
-		b1.loginAsBuyer("rohan@22", "12345");
-		
-		b1.viewByCategory("phone").forEach(s -> System.out.println(s));
-		
-		b1.buyProduct(4);
+		b1.viewAllBuyers().forEach(s -> System.out.println(s));
 		
 	}
 
