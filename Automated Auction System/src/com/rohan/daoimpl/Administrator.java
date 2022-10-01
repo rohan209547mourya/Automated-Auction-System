@@ -39,6 +39,12 @@ public class Administrator implements AdminDao{
 				
 				user = new Admin(true,res.getInt("Admin_id"), res.getString("Admin_name"), res.getString("Admin_username"), res.getString("Admin_password"));
 				this.admin = user;
+				
+				System.out.println("Log in successfully !" );
+			}
+			else {
+				
+				System.out.println("unable to log in please try again!");
 			}
 			
 			
@@ -87,13 +93,17 @@ public class Administrator implements AdminDao{
 				String n = res.getString("product_name");
 				int p = res.getInt("base_price");
 				String s = res.getString("status");
-				
+				int  q = res.getInt("quantity");
+				String c = res.getString("category");
 				Product pro = new Product();
 				
 				pro.setId(id);
 				pro.setName(n);
 				pro.setPrice(p);
 				pro.setStatus(s);
+				pro.setQuantity(q);
+				pro.setCategory(c);
+				
 				
 				products.add(pro);
 			}

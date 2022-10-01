@@ -137,7 +137,7 @@ public class UserSeller implements SellerDao{
 				
 				flag = true;
 				
-				Product p = new Product(res.getInt("product_id"), res.getInt("base_price"), res.getString("product_name"), res.getString("status"), res.getString("category"));
+				Product p = new Product(res.getInt("product_id"), res.getInt("base_price"), res.getInt("quantity") ,res.getString("product_name"), res.getString("status"), res.getString("category"));
 				
 				list.add(p);
 				

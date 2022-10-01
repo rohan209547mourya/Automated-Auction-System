@@ -11,13 +11,14 @@ public class Product {
 	private int quantity;
 	
 	
-	public Product(int id, int price, String name, String status, String category) {
+	public Product(int id, int price, int qun, String name, String status, String category) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.name = name;
 		this.status = status;
 		this.category = category;
+		this.quantity = qun;
 	}
 
 	public Product() {

@@ -121,6 +121,7 @@ public class UserBuyer implements BuyerDao{
 				int i = res.getInt("product_id");
 				String n = res.getString("product_name");
 				int p = res.getInt("base_price");
+				int q = res.getInt("quantity");
 				String s = res.getString("status");
 				String c = res.getString("category");
 				
@@ -133,7 +134,7 @@ public class UserBuyer implements BuyerDao{
 				}
 				
 				
-				products.add(new Product(i, p, n, s1, c));
+				products.add(new Product(i, p, q , n, s1, c));
 				
 			}
 			
