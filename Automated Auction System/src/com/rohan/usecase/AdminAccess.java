@@ -144,12 +144,12 @@ public class AdminAccess {
 				
 				object.viewProductsDetails().forEach( s -> {
 					
-					System.out.println("Product id = " + s.getId());
-					System.out.println("Product name = " + s.getName());
-					System.out.println("Product price = " + s.getPrice());
-					System.out.println("Product quantity = " + s.getQuantity());
-					System.out.println("Product status = " + s.getStatus());
-					System.out.println("Product category = " + s.getCategory());
+					System.out.println("Product ID       : " + s.getId());
+					System.out.println("Product Name     : " + s.getName());
+					System.out.println("Product Price    : " + s.getPrice());
+					System.out.println("Product Category : " + s.getCategory());
+					System.out.println("Product Quantity : " + s.getQuantity());
+					System.out.println("Product Status   : " + s.getStatus());	
 					
 					System.out.println("*************************");
 				});
@@ -164,10 +164,10 @@ public class AdminAccess {
 				object.viewRegisteredBuyers().forEach(s -> {
 					
 					
-					System.out.println("Buyer id = " + s.getId());
-					System.out.println("Buyer name = " + s.getName());
-					System.out.println("Buyer username = " + s.getUsername());
-					System.out.println("Buyer password = " + s.getPassword());
+					System.out.println("Buyer ID       : " + s.getId());
+					System.out.println("Buyer Name     : " + s.getName());
+					System.out.println("Buyer Username : " + s.getUsername());
+					System.out.println("Buyer Password : " + s.getPassword());
 					
 					System.out.println("*************************");
 					
@@ -182,10 +182,10 @@ public class AdminAccess {
 				object.viewRegisterdSellers().forEach(s -> {
 					
 					
-					System.out.println("Seller id = " + s.getId());
-					System.out.println("Selller name = " + s.getName());
-					System.out.println("Seller username = " + s.getUsername());
-					System.out.println("Seller password = " + s.getPassword());
+					System.out.println("Seller ID       : " + s.getId());
+					System.out.println("Selller Name    : " + s.getName());
+					System.out.println("Seller Username : " + s.getUsername());
+					System.out.println("Seller Password : " + s.getPassword());
 					
 					System.out.println("******************************************");
 					

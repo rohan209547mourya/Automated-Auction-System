@@ -20,6 +20,8 @@ import com.rohan.utility.GetConnection;
 public class UserBuyer implements BuyerDao{
 
 	private Buyer buyer;
+	Scanner sc = new Scanner(System.in);
+	private int count = 0;
 	
 	@Override
 	public void registerAsBuyer(Buyer user) {
@@ -175,7 +177,7 @@ public class UserBuyer implements BuyerDao{
 		
 		try(Connection conn = GetConnection.get()){
 			
-			try (Scanner sc = new Scanner(System.in)) {
+			Scanner sc = new Scanner(System.in);
 				
 				System.out.println("Enter quanity: ");
 				
@@ -195,15 +197,23 @@ public class UserBuyer implements BuyerDao{
 					
 					if(quantity < qun) {
 						
-						throw new ProductException("Not quantity to buy!");
+						throw new ProductException("Not enough quantity to buy!");
 					}
 					else {
 						
-						System.out.println("Enter delivery address: ");
+						System.out.println("Amount to be paid : " + res.getInt("base_price") * qun);
 						
-						sc.nextLine();
+						if(payment()) {
+							
+							System.out.println("Payment done... ");
+						}
+						else {
+							
+							System.out.println("Too Many Attemps, please try after some time. ");
+						}
 						
 						if(quantity == qun) {
+							
 							
 							PreparedStatement getId = conn.prepareStatement("select seller_id from products_seller where product_id = ?");
 							getId.setInt(1, product_id);
@@ -260,6 +270,8 @@ public class UserBuyer implements BuyerDao{
 								
 								insertIntoSales.setInt(1, id);
 								
+								
+								
 								LocalDate date = LocalDate.now();
 								
 								insertIntoSales.setDate(2, Date.valueOf(date));
@@ -280,10 +292,11 @@ public class UserBuyer implements BuyerDao{
 									
 									System.out.println("Order placed!");
 								}
-								else {
-									
-									throw new ProductException("unable to place order!");
-								}
+								
+							}
+							else {
+								
+								throw new ProductException("unable to place order!");
 							}
 							
 						}
@@ -294,9 +307,7 @@ public class UserBuyer implements BuyerDao{
 				else {
 					
 					throw new ProductException("There is no product with this id!");
-				}
-			}
-			
+				}			
 		}
 		catch(SQLException e) {
 			
@@ -348,6 +359,51 @@ public class UserBuyer implements BuyerDao{
 		}
 		
 		return buyers;
+	}
+	
+	private boolean payment() {
+		
+		
+		if(count == 3) {
+			
+			return false;
+		}
+		
+		System.out.println("Enter delivary address: ");
+		
+		String address = sc.nextLine();
+		
+		System.out.println("Enter mobile number : ");
+		
+		String mobile = sc.nextLine();
+		
+		if(mobile.length() > 10) {
+			
+			System.out.println("Invalid mobile number !");
+			payment();
+		}
+		
+		System.out.println("Enter your card number [8375 9283 8293 9393] : ");
+		
+		String card = sc.nextLine();
+		
+		System.out.println("Enter card expire date(MM/YYYY) : ");
+		
+		String date = sc.nextLine();
+		
+		System.out.println("Enter card CVV [835]: ");
+		String cvv = sc.nextLine();
+		
+
+		if(card.length() > 16 || cvv.length() > 3 || !(card.equals("8375928382939393")) || !(cvv.equals("835"))) {
+			
+			System.out.println("Worng card details!");
+			count++;
+			payment();
+			
+		}
+		
+		return true;
 	}
 
 }
