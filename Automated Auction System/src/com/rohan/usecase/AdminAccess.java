@@ -121,7 +121,8 @@ public class AdminAccess {
 		System.out.println("To view all products details Enter 1 \r\n" 
 				+ "To view all registered buyers Enter 2 \r\n"
 				+ "To view all registered Sellers Enter 3 \r\n"
-				+ "To log out 4");
+				+ "To check daily total sales Enter 4 \r\n"
+				+ "To log out 5");
 		System.out.println("***********************");
 		System.out.println();
 		
@@ -132,7 +133,7 @@ public class AdminAccess {
 		sc.nextLine();
 		
 		
-		if(input > 4 || input < 1) {
+		if(input > 5 || input < 1) {
 			
 			System.out.println("Invalid Input !");
 		}
@@ -197,14 +198,23 @@ public class AdminAccess {
 			}
 			break;
 			
+			
 			case 4 : {
+				
+				object.viewDailyTotalSales();
+				
+				run1();
+			}
+			break;
+			
+			case 5 : {
 				
 				System.out.println("Thank you for using our application ! ");
 				
 				return;
 				
 			}
-			
+
 		}
 	}
 	

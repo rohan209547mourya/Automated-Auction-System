@@ -16,4 +16,6 @@ public interface AdminDao {
 	
 	public List<Seller> viewRegisterdSellers();
 	
+	public void viewDailyTotalSales();
+	
 }

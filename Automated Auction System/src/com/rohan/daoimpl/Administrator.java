@@ -1,9 +1,11 @@
 package com.rohan.daoimpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -232,6 +234,55 @@ public class Administrator implements AdminDao{
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+
+	@Override
+	public void viewDailyTotalSales() {
+		
+		if(this.admin == null) {
+			
+			System.out.println("To access this functionality you need to login first!");
+			
+			return ;
+		}
+		
+		
+		
+		try(Connection conn = GetConnection.get()) {
+			
+			
+			
+			PreparedStatement state =  conn.prepareStatement("select * from dailysales where sale_date = ?");
+			
+
+			LocalDate date = LocalDate.now();
+			
+			state.setDate(1, Date.valueOf(date));
+			
+			
+			int total = 0;
+			
+			ResultSet res = state.executeQuery();
+			
+			
+			
+			
+			while(res.next() ) {
+				
+				total += res.getInt("total_sales");
+			}
+			
+			
+			System.out.println("Total Sale of Today is : "  + total);
+			
+		}
+		catch(SQLException e) {
+			
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
 	}
 	
 	

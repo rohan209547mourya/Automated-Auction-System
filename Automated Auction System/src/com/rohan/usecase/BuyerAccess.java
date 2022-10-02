@@ -33,6 +33,8 @@ public class BuyerAccess {
 		if(input > 6 || input < 1) {
 			
 			System.out.println("Invalid Input !");
+			
+			run();
 		}
 			
 		System.out.println();

@@ -84,6 +84,8 @@ public class UserBuyer implements BuyerDao{
 				user.setPassword(res.getString("buyer_password"));
 				
 				buyer = user;
+				
+				System.out.println("log in successfully!");
 			}
 			else {
 				
@@ -215,7 +217,7 @@ public class UserBuyer implements BuyerDao{
 						if(quantity == qun) {
 							
 							
-							PreparedStatement getId = conn.prepareStatement("select seller_id from products_seller where product_id = ?");
+							PreparedStatement getId = conn.prepareStatement("select * from products where product_id = ?");
 							getId.setInt(1, product_id);
 							
 							ResultSet res1 = getId.executeQuery();
@@ -237,12 +239,24 @@ public class UserBuyer implements BuyerDao{
 								insertIntoSales.executeUpdate();
 								
 								
-								PreparedStatement update = conn.prepareStatement("update products set status = 'Y' where product_id = ? AND quantity = ?");
+								PreparedStatement update = conn.prepareStatement("update products set status = 'Y', quantity = 0S where product_id = ? AND quantity = ?");
 								
 								
 								update.setInt(1, product_id);
 								update.setInt(2, qun);
 								int n = update.executeUpdate();
+								
+								PreparedStatement set =  conn.prepareStatement("insert into product_sold values (? , ? , ? , ? , ? , ?)");
+								
+								set.setInt(1, product_id);
+								set.setString(2, res1.getString("product_name"));
+								set.setInt(3, res1.getInt("base_price"));
+								set.setInt(4, qun);
+								set.setInt(5, id);
+								set.setString(6 , res1.getString("category"));
+								
+								
+								set.executeUpdate();
 								
 								if(n > 0) {
 									
@@ -250,14 +264,14 @@ public class UserBuyer implements BuyerDao{
 								}
 								else {
 									
-									throw new ProductException("Unable to place order!");
+									throw new ProductException("Unable to place order! ");
 								}
 							}
 						}
 						else {
 							
 							
-							PreparedStatement getId = conn.prepareStatement("select seller_id from products_seller where product_id = ?");
+							PreparedStatement getId = conn.prepareStatement("select * from products where product_id = ?");
 							getId.setInt(1, product_id);
 							
 							ResultSet s = getId.executeQuery();
@@ -280,13 +294,25 @@ public class UserBuyer implements BuyerDao{
 								insertIntoSales.executeUpdate();
 								
 								
-								PreparedStatement update = conn.prepareStatement("update products set quantity = quantity - ? , status = 'Y'  where product_id = ?");
+								
+								PreparedStatement update = conn.prepareStatement("update products set quantity = quantity - ? where product_id = ?");
 								
 								update.setInt(1, qun); 
 								update.setInt(2, product_id);
 								
 								int n = update.executeUpdate();
 								
+								PreparedStatement set =  conn.prepareStatement("insert into product_sold values (? , ? , ? , ? , ?,?)");
+								
+								set.setInt(1, product_id);
+								set.setString(2, s.getString("product_name"));
+								set.setInt(3, s.getInt("base_price"));
+								set.setInt(4, qun);
+								set.setInt(5, id);	
+								set.setString(6 , s.getString("category"));
+								
+								
+								set.executeUpdate();
 								
 								if(n > 0 ) {
 									
@@ -296,7 +322,7 @@ public class UserBuyer implements BuyerDao{
 							}
 							else {
 								
-								throw new ProductException("unable to place order!");
+								throw new ProductException("unable to place order! ");
 							}
 							
 						}
@@ -405,5 +431,8 @@ public class UserBuyer implements BuyerDao{
 		
 		return true;
 	}
+	
+	
+
 
 }

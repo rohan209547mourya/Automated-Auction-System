@@ -78,6 +78,8 @@ public class UserSeller implements SellerDao{
 				sell.setPassword(res.getString("seller_password"));
 				
 				this.setUser(sell);
+				
+				System.out.println("Log in successfully !");
 			}
 			else {
 				
@@ -123,7 +125,7 @@ public class UserSeller implements SellerDao{
 		try(Connection conn = GetConnection.get()){
 			
 			
-			PreparedStatement state = conn.prepareStatement("select * from products p INNER JOIN products_seller k where k.seller_id = ? AND p.product_id = k.product_id AND p.status = 'Y' ");
+			PreparedStatement state = conn.prepareStatement("select * from product_sold where seller_id = ? ");
 			
 			state.setInt(1, this.user.getId());
 			
@@ -137,7 +139,7 @@ public class UserSeller implements SellerDao{
 				
 				flag = true;
 				
-				Product p = new Product(res.getInt("product_id"), res.getInt("base_price"), res.getInt("quantity") ,res.getString("product_name"), res.getString("status"), res.getString("category"));
+				Product p = new Product(res.getInt("product_id"), res.getInt("base_price"), res.getInt("quantity_sold") ,res.getString("product_name"), "Sold", res.getString("category"));
 				
 				list.add(p);
 				
@@ -237,12 +239,13 @@ public class UserSeller implements SellerDao{
 				
 				try {
 
-					PreparedStatement state = conn.prepareStatement("insert into products (product_name , base_price , status , category , quantity) values(? , ? , ? , ? , ?)");
+					PreparedStatement state = conn.prepareStatement("insert into products (product_name , base_price , status , category , quantity , seller_id) values(? , ? , ? , ? , ? , ?)");
 					state.setString(1 , s.getName());
 					state.setInt(2 , s.getPrice());
 					state.setString(3 , "N");
 					state.setString(4 , s.getCategory());
 					state.setInt(5 , s.getQuantity());
+					state.setInt(6, user.getId());
 					
 					
 					int k = state.executeUpdate();
@@ -284,12 +287,13 @@ public class UserSeller implements SellerDao{
 		try(Connection conn = GetConnection.get()) {
 			
 			
-			PreparedStatement state = conn.prepareStatement("insert into products (product_name , base_price , status , category , quantity) values(? , ? , ? , ? , ?)");
+			PreparedStatement state = conn.prepareStatement("insert into products (product_name , base_price , status , category , quantity , seller_id) values(? , ? , ? , ? , ? , ?)");
 			state.setString(1 , s.getName());
 			state.setInt(2 , s.getPrice());
 			state.setString(3 , "N");
 			state.setString(4 , s.getCategory());
 			state.setInt(5 , s.getQuantity());
+			state.setInt(6 , user.getId());
 			
 			
 			int k = state.executeUpdate();
@@ -492,6 +496,68 @@ public class UserSeller implements SellerDao{
 		
 		this.updateProduct(product_id, k);
 		
+	}
+	
+	
+	public List<Product> viewAllProdcuts(){
+		
+		try {
+			
+			if(this.user == null ) {
+				
+				
+				throw new SellerException("you need to log in first to access this!");
+				
+			}
+		}
+		catch (SellerException e) {
+
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		List<Product> list = new ArrayList<>();
+		
+		
+		try(Connection conn = GetConnection.get()){
+			
+			
+			PreparedStatement state = conn.prepareStatement("select * from products where seller_id = ?");
+			
+			state.setInt(1, this.user.getId());
+			
+			ResultSet res = state.executeQuery();			
+			
+			
+			boolean flag = false;
+			
+			
+			while(res.next()) {
+				
+				flag = true;
+				
+				Product p = new Product(res.getInt("product_id"), res.getInt("base_price"), res.getInt("quantity") ,res.getString("product_name"), res.getString("status"), res.getString("category"));
+				
+				list.add(p);
+				
+			}
+			
+			if(!flag) {
+				
+				System.out.println("There is no product !");
+			}
+			
+		}
+		catch(SQLException e) {
+			
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		return list;
 	}
 	
 	
