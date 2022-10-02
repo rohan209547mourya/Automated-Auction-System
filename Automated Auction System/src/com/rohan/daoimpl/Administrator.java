@@ -213,7 +213,7 @@ public class Administrator implements AdminDao{
 			
 			if(users.size() == 0) {
 				
-				System.out.println("There is no registerd buyer!");
+				System.out.println("There is no registerd Seller!");
 			}
 			
 		}
