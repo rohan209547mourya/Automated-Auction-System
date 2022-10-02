@@ -12,24 +12,24 @@
 ## Features 
 
 - **Admin** 
-> Can handle User
-> Can check daily Sales
-> Can View all products
-> Can solve disputes
+> Can handle User,
+> Can check daily Sales,
+> Can View all products,
+> Can solve disputes.
 
 - **Seller** 
-> User can register or log in as seller
-> User can add single or multiple product at a time
-> Can remove one product
-> Can update details of product
-> Can track sold products
+> User can register or log in as seller,
+> User can add single or multiple product at a time,
+> Can remove one product,
+> Can update details of product,
+> Can track sold products.
 
 
 - **Buyer**
-> User can register and log in as buyer
-> User can search products by there category 
-> User can buy products
-> User can also see other buyers
+> User can register and log in as buyer,
+> User can search products by there category ,
+> User can buy products,
+> User can also see other buyers.
 
 
 ## Contribution 
